@@ -146,9 +146,9 @@ def build_pattern(log_format):
         log_format = LOG_FORMAT_COMMON
     elif log_format == 'plusplus':
         log_format = LOG_FORMAT_PLUSPLUS
-    elif log_format == 'varnish'
+    elif log_format == 'varnish':
         log_format = LOG_FORMAT_VARNISH
-    elif log_format == 'varnishplus'
+    elif log_format == 'varnishplus':
         log_format = LOG_FORMAT_VARNISHPLUS
     pattern = re.sub(REGEX_SPECIAL_CHARS, r'\\\1', log_format)
     pattern = re.sub(REGEX_LOG_FORMAT_VARIABLE, '(?P<\\1>.*)', pattern)
