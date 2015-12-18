@@ -24,6 +24,13 @@ LOG_FORMAT_PLUSPLUS = '$ignore_0 $ignore_1 $ignore_2 $ignore_3 $ignore_4: ' \
                       '"$request" $status $body_bytes_sent ' \
                       '"$http_referer" "$http_user_agent" '\
                       '"$http_x_forwarded_for" "$http_host" $request_time'
+LOG_FORMAT_VARNISH  = '$remote_addr $ignore $ignore [$time_local] '\
+                      '"$request" $status $body_bytes_size ' \
+                      '"$http_referer" "$http_user_agent" '
+LOG_FORMAT_VARNISHPLUS =  '"$http_x_forwarded_for" [$time_local] "$request" ' \
+                      '$status $body_bytes_sent ' \
+                      '"$http_referer" "$http_user_agent" '\
+                      '"$http_host" $request_time $hitmiss'
 
 # common parser element
 semicolon = Literal(';').suppress()
@@ -139,6 +146,10 @@ def build_pattern(log_format):
         log_format = LOG_FORMAT_COMMON
     elif log_format == 'plusplus':
         log_format = LOG_FORMAT_PLUSPLUS
+    elif log_format == 'varnish'
+        log_format = LOG_FORMAT_VARNISH
+    elif log_format == 'varnishplus'
+        log_format = LOG_FORMAT_VARNISHPLUS
     pattern = re.sub(REGEX_SPECIAL_CHARS, r'\\\1', log_format)
     pattern = re.sub(REGEX_LOG_FORMAT_VARIABLE, '(?P<\\1>.*)', pattern)
     return re.compile(pattern)
