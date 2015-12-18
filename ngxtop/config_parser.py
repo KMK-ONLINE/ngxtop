@@ -19,12 +19,12 @@ LOG_FORMAT_COMBINED = '$remote_addr - $remote_user [$time_local] ' \
 LOG_FORMAT_COMMON   = '$remote_addr - $remote_user [$time_local] ' \
                       '"$request" $status $body_bytes_sent ' \
                       '"$http_x_forwarded_for"'
-LOG_FORMAT_PLUSPLUS = '$ignore_0 $ignore_1 $ignore_2 $ignore_3 $ignore_4: ' \
+LOG_FORMAT_PLUSPLUS = '$ignore_0 $ignore_1 $ignore_2 $ec2_host $ignore_3: ' \
                       '$remote_addr - $remote_user [$time_local] ' \
                       '"$request" $status $body_bytes_sent ' \
                       '"$http_referer" "$http_user_agent" '\
                       '"$http_x_forwarded_for" "$http_host" $request_time'
-LOG_FORMAT_VARNISH  = '$remote_addr $ignore $ignore [$time_local] '\
+LOG_FORMAT_VARNISH  = '$remote_addr $ignore_1 $ignore_2 [$time_local] '\
                       '"$request" $status $body_bytes_size ' \
                       '"$http_referer" "$http_user_agent" '
 LOG_FORMAT_VARNISHPLUS =  '"$http_x_forwarded_for" [$time_local] "$request" ' \
