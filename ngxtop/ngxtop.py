@@ -83,10 +83,11 @@ DEFAULT_QUERIES = [
      '''SELECT
        count(1)                                    AS count,
        avg(bytes_sent)                             AS avg_bytes_sent,
-       count(CASE WHEN status_type = 2 THEN 1 END) AS '2xx',
-       count(CASE WHEN status_type = 3 THEN 1 END) AS '3xx',
-       count(CASE WHEN status_type = 4 THEN 1 END) AS '4xx',
-       count(CASE WHEN status_type = 5 THEN 1 END) AS '5xx'
+       count(CASE WHEN status_type = 2 THEN 1 END) AS R2xx,
+       count(CASE WHEN status_type = 3 THEN 1 END) AS R3xx,
+       count(CASE WHEN status_type = 4 THEN 1 END) AS R4xx,
+       count(CASE WHEN status_type = 5 THEN 1 END) AS R5xx,
+       avg(request_time) AS request_time_avg
      FROM log
      ORDER BY %(--order-by)s DESC
      LIMIT %(--limit)s'''),
@@ -96,10 +97,11 @@ DEFAULT_QUERIES = [
        %(--group-by)s,
        count(1)                                    AS count,
        avg(bytes_sent)                             AS avg_bytes_sent,
-       count(CASE WHEN status_type = 2 THEN 1 END) AS '2xx',
-       count(CASE WHEN status_type = 3 THEN 1 END) AS '3xx',
-       count(CASE WHEN status_type = 4 THEN 1 END) AS '4xx',
-       count(CASE WHEN status_type = 5 THEN 1 END) AS '5xx'
+       count(CASE WHEN status_type = 2 THEN 1 END) AS R2xx,
+       count(CASE WHEN status_type = 3 THEN 1 END) AS R3xx,
+       count(CASE WHEN status_type = 4 THEN 1 END) AS R4xx,
+       count(CASE WHEN status_type = 5 THEN 1 END) AS R5xx,
+       avg(request_time) AS request_time_avg
      FROM log
      GROUP BY %(--group-by)s
      HAVING %(--having)s
@@ -107,7 +109,7 @@ DEFAULT_QUERIES = [
      LIMIT %(--limit)s''')
 ]
 
-DEFAULT_FIELDS = set(['status_type', 'bytes_sent'])
+DEFAULT_FIELDS = set(['status_type', 'bytes_sent', 'request_time'])
 
 
 # ======================
