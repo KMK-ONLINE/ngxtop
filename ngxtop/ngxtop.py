@@ -9,7 +9,8 @@ Usage:
     Stream Log Usage ....
     Nginx: tail -f file_log | ngixtop [option]
     Varnish: varnishncsa | ngixtop [option]
-    VarnishPlus: varnishncsa -F '"%{X-Forwarded-For}i" %t "%r" %s %O "%{Referer}i" "%{User-agent}i" %{Host}i %D %{Varnish:hitmiss}x' | ngixtop [option]
+    VarnishPlus3: varnishncsa -F '"%{X-Forwarded-For}i" %t "%r" %s %b "%{Referer}i" "%{User-agent}i" "%{Host}i" %D %{Varnish:hitmiss}x' | ngixtop [option]
+    VarnishPlus4: varnishncsa -F '"%{X-Forwarded-For}i" %t "%r" %s %O "%{Referer}i" "%{User-agent}i" "%{Host}i" %D %{Varnish:hitmiss}x' | ngixtop [option]
 
 Options:
     -l <file>, --access-log <file>  access log file to parse.
