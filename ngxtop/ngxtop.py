@@ -6,7 +6,7 @@ Usage:
     ngxtop info
     ngxtop [options] query <query> ...
     
-Stream Log Usage:
+    Stream Log Usage ....
     Nginx: tail -f file_log | ngixtop [option]
     Varnish: varnishncsa | ngixtop [option]
     VarnishPlus: varnishncsa -F '"%{X-Forwarded-For}i" %t "%r" %s %O "%{Referer}i" "%{User-agent}i" %{Host}i %D %{Varnish:hitmiss}x' | ngixtop [option]
