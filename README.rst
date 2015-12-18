@@ -21,9 +21,14 @@ Installation
 ::
 
     pip install ngxtop
+    git clone https://github.com/KMK-ONLINE/ngxtop.git
+    cd ngxtop
+    git checkout PlusPlus
+    sudo python setup.py build
+    sudo python setup.py install
 
 
-Note: ``ngxtop`` is primarily developed and tested with python2 but also supports python3.
+Note: ``ngxtop`` is primarily developed and tested with python2 but also supports python3. We might be need install official ngxtop first to get all dependencies before using our fork
 
 Usage
 -----
