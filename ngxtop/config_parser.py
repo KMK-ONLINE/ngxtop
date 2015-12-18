@@ -19,6 +19,11 @@ LOG_FORMAT_COMBINED = '$remote_addr - $remote_user [$time_local] ' \
 LOG_FORMAT_COMMON   = '$remote_addr - $remote_user [$time_local] ' \
                       '"$request" $status $body_bytes_sent ' \
                       '"$http_x_forwarded_for"'
+LOG_FORMAT_PLUSPLUS = '$ignore_0 $ignore_1 $ignore_2 $ignore_3 $ignore_4: ' \
+                      '$remote_addr - $remote_user [$time_local] ' \
+                      '"$request" $status $body_bytes_sent ' \
+                      '"$http_referer" "$http_user_agent" '\
+                      '"$http_x_forwarded_for" "$http_host" $request_time'
 
 # common parser element
 semicolon = Literal(';').suppress()
@@ -132,6 +137,8 @@ def build_pattern(log_format):
         log_format = LOG_FORMAT_COMBINED
     elif log_format == 'common':
         log_format = LOG_FORMAT_COMMON
+    elif log_format == 'plusplus':
+        log_format = LOG_FORMAT_PLUSPLUS
     pattern = re.sub(REGEX_SPECIAL_CHARS, r'\\\1', log_format)
     pattern = re.sub(REGEX_LOG_FORMAT_VARIABLE, '(?P<\\1>.*)', pattern)
     return re.compile(pattern)
