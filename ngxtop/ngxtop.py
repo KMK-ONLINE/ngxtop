@@ -20,7 +20,7 @@ Options:
                      and only watch for new lines as they are written to the access log.
                      Use this flag to tell ngxtop to process the current content of the access log instead.
     -t <seconds>, --interval <seconds>  report interval when running in follow mode [default: 2.0]
-    -W <number>, --waktu <number>  time dimension, nginx using second but varnish more show the information in micro [default: 1]
+    -W <number>, --waktu <number>  convert dimension, nginx using second but varnish more show the information in micro [default: 1]
                      1 Determined second, 1000 is milisecond and 1000000 is microsecond
 
     -g <var>, --group-by <var>  group by variable [default: request_path]
@@ -64,6 +64,9 @@ Examples:
 
     Analyze apache access log from remote machine using 'common' log format
     $ ssh remote tail -f /var/log/apache2/access.log | ngxtop -f common
+    
+    Request time from log was in Microsecond and we wanna look in second
+    $ ngxtop -s 1000000
 """
 from __future__ import print_function
 import atexit
