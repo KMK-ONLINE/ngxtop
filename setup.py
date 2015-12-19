@@ -2,12 +2,12 @@ from setuptools import setup
 
 setup(
     name='ngxtop',
-    version='0.0.2',
-    description='Real-time metrics for nginx server',
+    version='0.0.2.kmk',
+    description='Real-time metrics for nginx and Varnish server',
     long_description=open('README.rst').read(),
     license='MIT',
 
-    url='https://github.com/lebinh/ngxtop',
+    url='https://github.com/KMK-ONLINE/ngxtop',
     author='Binh Le',
     author_email='lebinh.it@gmail.com',
 
