@@ -20,6 +20,8 @@ Options:
                      and only watch for new lines as they are written to the access log.
                      Use this flag to tell ngxtop to process the current content of the access log instead.
     -t <seconds>, --interval <seconds>  report interval when running in follow mode [default: 2.0]
+    -W <number>, --waktu <number>  time dimension, nginx using second but varnish more show the information in micro [default: 1]
+                     1 Determined second, 1000 is milisecond and 1000000 is microsecond
 
     -g <var>, --group-by <var>  group by variable [default: request_path]
                      example options [http_user_agent, http_host, http_referer, request, request_path, remote_addr, hitmiss]
@@ -95,7 +97,8 @@ DEFAULT_QUERIES = [
        count(CASE WHEN status_type = 3 THEN 1 END) AS R3xx,
        count(CASE WHEN status_type = 4 THEN 1 END) AS R4xx,
        count(CASE WHEN status_type = 5 THEN 1 END) AS R5xx,
-       avg(request_time) AS request_time_avg
+       avg(request_time) AS request_time_avg,
+       ( (sum(bytes_sent) / 1024) / (sum(request_time) / %(--waktu)s)  ) AS 'Speed kB@time'
      FROM log
      ORDER BY %(--order-by)s DESC
      LIMIT %(--limit)s'''),
