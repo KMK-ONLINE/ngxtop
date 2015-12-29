@@ -27,10 +27,11 @@ LOG_FORMAT_PLUSPLUS = '$ignore_0 $ignore_1 $ignore_2 $ec2_host $ignore_3: ' \
 LOG_FORMAT_VARNISH  = '$remote_addr $ignore_1 $ignore_2 [$time_local] ' \
                       '"$request" $status $body_bytes_sent ' \
                       '"$http_referer" "$http_user_agent"'
-LOG_FORMAT_VARNISHPLUS =  '"$http_x_forwarded_for" [$time_local] "$request" ' \
-                      '$status $body_bytes_sent ' \
-                      '"$http_referer" "$http_user_agent" '\
-                      '"$http_host" $request_time $hitmiss'
+LOG_FORMAT_VARNISHPLUS = '$ignore_0 $ignore_1 $ignore_2 $ec2_host $ignore_3: ' \
+                         '"$http_x_forwarded_for" [$time_local] "$request" ' \
+                         '$status $body_bytes_sent ' \
+                         '"$http_referer" "$http_user_agent" '\
+                         '"$http_host" $request_time $hitmiss'
 
 # common parser element
 semicolon = Literal(';').suppress()
